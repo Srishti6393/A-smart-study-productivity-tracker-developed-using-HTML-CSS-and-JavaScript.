@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataGuard Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="result-page">
+
+        <!-- HEADER -->
+        <div class="result-header">
+
+            <div class="result-icon">
+                🛡️
+            </div>
+
+            <h1>DataGuard Scan Complete</h1>
+
+            <p>
+                Your dataset has been successfully scanned.
+            </p>
+
+        </div>
+
+
+        <!-- DATASET INFORMATION -->
+        <div class="result-card">
+
+            <h2>📄 Dataset Information</h2>
+
+            <div class="result-stats">
+
+                <div class="stat-box">
+                    <span>File</span>
+                    <strong>{{ filename }}</strong>
+                </div>
+
+                <div class="stat-box">
+                    <span>Rows</span>
+                    <strong>{{ rows }}</strong>
+                </div>
+
+                <div class="stat-box">
+                    <span>Columns</span>
+                    <strong>{{ columns }}</strong>
+                </div>
+
+                <div class="stat-box">
+                    <span>Sensitive</span>
+                    <strong>{{ sensitive_count }}</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RISK -->
+        <div class="risk-card">
+
+            <h2>🔐 Privacy Risk Score</h2>
+
+            <div class="risk-score">
+                {{ risk_score }}%
+            </div>
+
+            <progress
+                class="risk-progress"
+                value="{{ risk_score }}"
+                max="100">
+            </progress>
+
+            <div class="risk-level">
+                {{ risk_level }} RISK
+            </div>
+
+            <p>
+                This score shows the percentage of columns
+                containing potentially sensitive information.
+            </p>
+
+        </div>
+
+
+        <!-- COLUMN ANALYSIS -->
+        <div class="result-card">
+
+            <h2>🔍 Column Analysis</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Category</th>
+                            <th>Risk</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in column_details %}
+
+                        <tr>
+
+                            <td>
+                                {{ item.name }}
+                            </td>
+
+                            <td>
+                                {{ item.category }}
+                            </td>
+
+                            <td>
+
+                                {% if item.risk == "High" %}
+
+                                    <span class="risk-high">
+                                        🔴 High
+                                    </span>
+
+                                {% elif item.risk == "Medium" %}
+
+                                    <span class="risk-medium">
+                                        🟠 Medium
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="risk-low">
+                                        🟢 Low
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="result-actions">
+
+            <a href="/download" class="primary-btn">
+                📥 Download Safe Dataset
+            </a>
+
+            <a href="/" class="primary-btn">
+                ← Scan Another Dataset
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

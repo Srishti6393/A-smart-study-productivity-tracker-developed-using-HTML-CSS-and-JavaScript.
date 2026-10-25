@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataGuard | Data Privacy</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            🛡️ Data<span>Guard</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero">
+
+            <!-- Left Side -->
+            <div class="hero-text">
+
+                <div class="badge">
+                    🔐 Intelligent Data Privacy
+                </div>
+
+                <h1>
+                    Protect Your Data.
+                    <br>
+                    <span>Before You Share It.</span>
+                </h1>
+
+                <p>
+                    DataGuard detects sensitive information in your
+                    datasets and helps protect it through intelligent
+                    data anonymization.
+                </p>
+
+
+                <!-- Upload Section -->
+                <div class="upload-box">
+
+                    <h3>Upload Your Dataset</h3>
+
+                    <p>
+                        Supported formats: CSV, XLSX, XLS
+                    </p>
+
+                    <form action="/scan"
+                          method="POST"
+                          enctype="multipart/form-data">
+
+                        <input
+                            type="file"
+                            name="file"
+                            id="fileInput"
+                            accept=".csv,.xlsx,.xls"
+                            required
+                        >
+
+                        <label for="fileInput"
+                               class="file-label">
+                            📁 Choose Dataset
+                        </label>
+
+                        <div id="file-name">
+                            No file selected
+                        </div>
+
+                        <button type="submit"
+                                class="primary-btn">
+
+                            🚀 Start Data Scan
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- Right Side Security Card -->
+            <div class="security-card">
+
+                <div class="card-top">
+
+                    <span>
+                        Privacy Status
+                    </span>
+
+                    <span class="secure">
+                        ● Secure
+                    </span>
+
+                </div>
+
+
+                <div class="shield">
+                    🛡️
+                </div>
+
+
+                <h2>
+                    Your Data is Protected
+                </h2>
+
+                <p>
+                    Detect • Analyze • Anonymize
+                </p>
+
+
+                <div class="stats">
+
+                    <div>
+                        <strong>100%</strong>
+                        <small>Private</small>
+                    </div>
+
+                    <div>
+                        <strong>AI</strong>
+                        <small>Detection</small>
+                    </div>
+
+                    <div>
+                        <strong>24/7</strong>
+                        <small>Protection</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+        <section class="features"
+                 id="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Detect
+                </h3>
+
+                <p>
+                    Automatically find sensitive information
+                    inside your dataset.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Analyze
+                </h3>
+
+                <p>
+                    Analyze your dataset and calculate
+                    its privacy risk.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Anonymize
+                </h3>
+
+                <p>
+                    Hide personal information before
+                    sharing your dataset.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Report
+                </h3>
+
+                <p>
+                    Generate a simple and understandable
+                    privacy report.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- About -->
+        <section class="about"
+                 id="about">
+
+            <h2>
+                Why DataGuard?
+            </h2>
+
+            <p>
+                Modern datasets often contain personal and
+                sensitive information. DataGuard helps users
+                identify and protect that information before
+                the dataset is shared or analyzed.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        const fileInput =
+            document.getElementById("fileInput");
+
+        const fileName =
+            document.getElementById("file-name");
+
+
+        fileInput.addEventListener("change", function () {
+
+            if (this.files.length > 0) {
+
+                fileName.textContent =
+                    "📄 " + this.files[0].name;
+
+            } else {
+
+                fileName.textContent =
+                    "No file selected";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
